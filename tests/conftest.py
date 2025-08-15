@@ -40,6 +40,14 @@ logger = logger.bind(name='tests')
 VCR_CASSETTE_DIR = Path(__file__).parent / 'cassettes'
 VCR_RECORD_MODE = os.environ.get('VCR_RECORD_MODE', 'once')
 
+
+def scrub_txnid(request):
+    request.uri = re.sub(
+        r'/send/m\.room\.message/[^/]+$', '/send/m.room.message/<txnId>', request.uri
+    )
+    return request
+
+
 vcr = VCR(
     cassette_library_dir=str(VCR_CASSETTE_DIR),
     record_mode=VCR_RECORD_MODE,
@@ -47,6 +55,7 @@ vcr = VCR(
         (client, 'HTTPSConnection', VCRHTTPSConnection),
         (client, 'HTTPConnection', VCRHTTPConnection),
     ),
+    before_record_request=scrub_txnid,
 )
 
 

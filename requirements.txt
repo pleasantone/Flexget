@@ -90,7 +90,7 @@ jsonschema-specifications==2025.4.1
     # via jsonschema
 loguru==0.7.3
     # via flexget
-markdown-it-py==3.0.0
+markdown-it-py==4.0.0
     # via rich
 markupsafe==3.0.2
     # via
@@ -169,7 +169,7 @@ six==1.17.0
     #   python-dateutil
 soupsieve==2.7
     # via beautifulsoup4
-sqlalchemy==2.0.42
+sqlalchemy==2.0.43
     # via flexget
 tempora==5.8.1
     # via portend

@@ -33,8 +33,8 @@ body:
     attributes:
       label: Additional information
       value: |
-        **FlexGet Version: **
-        **Python Version: **
-        **OS Version: **
-        **Installation Method: **
-        **Using Daemon (yes/no): **
+        **FlexGet Version:** 
+        **Python Version:** 
+        **OS Version:** 
+        **Installation Method:** 
+        **Using Daemon (yes/no):**

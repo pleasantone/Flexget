@@ -7,9 +7,17 @@ html {
 }
 
 @media (min-width: 960px) {
-  .bd-sidebar-primary {
-    width: 20%; /* Enlarge the document viewing area. */
+  .bd-page-width {
+    max-width: 106rem; /* Reduce the page’s side margins */
   }
+
+  .bd-sidebar-primary {
+    width: 22%; /* Slightly narrow the left sidebar */
+  }
+}
+
+.bd-main .bd-content .bd-article-container {
+  max-width: 78em; /* To match .bd-page-width */
 }
 
 #ethical-ad-placement {

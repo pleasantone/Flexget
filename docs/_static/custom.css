@@ -6,8 +6,18 @@ html {
   padding: 0.3rem; /* To match the compact header. */
 }
 
-.bd-sidebar-primary {
-  width: 20%; /* Enlarge the document viewing area. */
+@media (min-width: 960px) {
+  .bd-page-width {
+    max-width: 100rem; /* Reduce the page’s side margins */
+  }
+
+  .bd-sidebar-primary {
+    width: 23%; /* Slightly narrow the left sidebar */
+  }
+}
+
+.bd-main .bd-content .bd-article-container {
+  max-width: 61em; /* To match .bd-page-width */
 }
 
 #ethical-ad-placement {

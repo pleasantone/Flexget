@@ -28,7 +28,7 @@ repos:
       - id: fix-byte-order-marker
       - id: trailing-whitespace
         args: [--markdown-linebreak-ext=md]
-        exclude_types: [python]
+        exclude_types: [python, yaml]
   - repo: https://github.com/henryiii/validate-pyproject-schema-store
     rev: 2025.08.07
     hooks:

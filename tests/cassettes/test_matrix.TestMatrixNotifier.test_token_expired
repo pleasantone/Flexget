@@ -1,0 +1,132 @@
+interactions:
+  - request:
+      body: '{"msgtype":"m.text","body":"This is a message for testing."}'
+      headers:
+        Authorization:
+          - Bearer mat_BZDW7Rdbkj4KOFNn6LkRh5Y3xC3dtR_0SzXAT
+        Content-Type:
+          - application/json
+      method: PUT
+      uri: https://matrix.org/_matrix/client/v3/rooms/!PVlIjQRbvFpeHCCxGy:matrix.org/send/m.room.message/<txnId>
+    response:
+      body:
+        string: '{"errcode":"M_UNKNOWN_TOKEN","error":"Token is not active","soft_logout":false}'
+      headers:
+        Access-Control-Allow-Headers:
+          - X-Requested-With, Content-Type, Authorization, Date
+        Access-Control-Allow-Methods:
+          - GET, HEAD, POST, PUT, DELETE, OPTIONS
+        Access-Control-Allow-Origin:
+          - '*'
+        Access-Control-Expose-Headers:
+          - Synapse-Trace-Id, Server
+        CF-RAY:
+          - 9731fd1c7a46d487-NRT
+        Cache-Control:
+          - no-cache, no-store, must-revalidate
+        Connection:
+          - keep-alive
+        Content-Type:
+          - application/json
+        Date:
+          - Fri, 22 Aug 2025 11:21:48 GMT
+        Server:
+          - cloudflare
+        Transfer-Encoding:
+          - chunked
+        cf-cache-status:
+          - DYNAMIC
+        permissions-policy:
+          - interest-cohort=()
+        synapse-trace-id:
+          - 1ec9cf0d43added5
+      status:
+        code: 401
+        message: Unauthorized
+  - request:
+      body: '{"type":"m.login.password","identifier":{"type":"m.id.user","user":"@viodi:matrix.org"},"password":"b2!pFpbeP$WuJt$","initial_device_display_name":"FlexGet
+        Notifier"}'
+      headers:
+        Content-Type:
+          - application/json
+      method: POST
+      uri: https://matrix.org/_matrix/client/v3/login
+    response:
+      body:
+        string: '{"access_token":"mct_SqFhxYmjIGgDMPHUs70KqxhK7SUhDK_9ggXn1","device_id":"6alJK1awxd","user_id":"@viodi:matrix.org"}'
+      headers:
+        Access-Control-Allow-Origin:
+          - '*'
+        CF-RAY:
+          - 9731fd1ecd44d487-NRT
+        Connection:
+          - keep-alive
+        Content-Encoding:
+          - gzip
+        Content-Type:
+          - application/json
+        Date:
+          - Fri, 22 Aug 2025 11:21:49 GMT
+        Server:
+          - cloudflare
+        Transfer-Encoding:
+          - chunked
+        Vary:
+          - origin, access-control-request-method, access-control-request-headers
+          - Accept-Encoding
+        cf-cache-status:
+          - DYNAMIC
+        permissions-policy:
+          - interest-cohort=()
+      status:
+        code: 200
+        message: OK
+  - request:
+      body: '{"msgtype":"m.text","body":"This is a message for testing."}'
+      headers:
+        Authorization:
+          - Bearer mct_SqFhxYmjIGgDMPHUs70KqxhK7SUhDK_9ggXn1
+        Content-Type:
+          - application/json
+      method: PUT
+      uri: https://matrix.org/_matrix/client/v3/rooms/!PVlIjQRbvFpeHCCxGy:matrix.org/send/m.room.message/<txnId>
+    response:
+      body:
+        string: '{"event_id":"$UyIbXJBuEaz7F5QFO8aYMXJDyyVB-z-bL0op71GEE9g"}'
+      headers:
+        Access-Control-Allow-Headers:
+          - X-Requested-With, Content-Type, Authorization, Date
+        Access-Control-Allow-Methods:
+          - GET, HEAD, POST, PUT, DELETE, OPTIONS
+        Access-Control-Allow-Origin:
+          - '*'
+        Access-Control-Expose-Headers:
+          - Synapse-Trace-Id, Server
+        CF-RAY:
+          - 9731fd21a930d487-NRT
+        Cache-Control:
+          - no-cache, no-store, must-revalidate
+        Connection:
+          - keep-alive
+        Content-Encoding:
+          - gzip
+        Content-Type:
+          - application/json
+        Date:
+          - Fri, 22 Aug 2025 11:21:50 GMT
+        Server:
+          - cloudflare
+        Transfer-Encoding:
+          - chunked
+        Vary:
+          - Accept-Encoding
+        cf-cache-status:
+          - DYNAMIC
+        permissions-policy:
+          - interest-cohort=()
+        synapse-trace-id:
+          - 43e08fa8deb4314d
+      status:
+        code: 200
+        message: OK
+version: 1

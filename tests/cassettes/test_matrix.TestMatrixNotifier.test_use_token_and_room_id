@@ -1,0 +1,50 @@
+interactions:
+  - request:
+      body: '{"msgtype":"m.text","body":"This is a message for testing."}'
+      headers:
+        Authorization:
+          - Bearer mat_1bGYIG9S4j7bbTuVlOyGzbVOZrTWms_g6epP1
+        Content-Type:
+          - application/json
+      method: PUT
+      uri: https://matrix.org/_matrix/client/v3/rooms/!PVlIjQRbvFpeHCCxGy:matrix.org/send/m.room.message/<txnId>
+    response:
+      body:
+        string: '{"event_id":"$LCHjw9NX7RPJhArW-3RuHJBhrs-qQEroJ7Xr9eMtOYk"}'
+      headers:
+        Access-Control-Allow-Headers:
+          - X-Requested-With, Content-Type, Authorization, Date
+        Access-Control-Allow-Methods:
+          - GET, HEAD, POST, PUT, DELETE, OPTIONS
+        Access-Control-Allow-Origin:
+          - '*'
+        Access-Control-Expose-Headers:
+          - Synapse-Trace-Id, Server
+        CF-RAY:
+          - 9731fd083cedd5b9-NRT
+        Cache-Control:
+          - no-cache, no-store, must-revalidate
+        Connection:
+          - keep-alive
+        Content-Encoding:
+          - gzip
+        Content-Type:
+          - application/json
+        Date:
+          - Fri, 22 Aug 2025 11:21:45 GMT
+        Server:
+          - cloudflare
+        Transfer-Encoding:
+          - chunked
+        Vary:
+          - Accept-Encoding
+        cf-cache-status:
+          - DYNAMIC
+        permissions-policy:
+          - interest-cohort=()
+        synapse-trace-id:
+          - ee62c1a73a2b960e
+      status:
+        code: 200
+        message: OK
+version: 1

@@ -70,8 +70,8 @@ def do_cli_summary(manager, options):
 
     with Session() as session:
         # Create aliases for different execution queries
-        LastExecution = aliased(db.TaskExecution)
-        LastSuccess = aliased(db.TaskExecution)
+        LastExecution = aliased(db.TaskExecution)  # noqa: N806
+        LastSuccess = aliased(db.TaskExecution)  # noqa: N806
 
         # Subquery to find the last execution time for each task
         last_execution_subq = (
@@ -85,7 +85,7 @@ def do_cli_summary(manager, options):
             session.query(
                 LastSuccess.task_id, func.max(LastSuccess.start).label('last_success_start')
             )
-            .filter(and_(LastSuccess.succeeded == True, LastSuccess.produced > 0))
+            .filter(and_(LastSuccess.succeeded, LastSuccess.produced > 0))
             .group_by(LastSuccess.task_id)
             .subquery()
         )
@@ -109,7 +109,7 @@ def do_cli_summary(manager, options):
                 and_(
                     LastSuccess.task_id == db.StatusTask.id,
                     LastSuccess.start == last_success_subq.c.last_success_start,
-                    LastSuccess.succeeded == True,
+                    LastSuccess.succeeded,
                     LastSuccess.produced > 0,
                 ),
             )

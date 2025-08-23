@@ -72,33 +72,24 @@ def do_cli_summary(manager, options):
         # Create aliases for different execution queries
         LastExecution = aliased(db.TaskExecution)
         LastSuccess = aliased(db.TaskExecution)
-        
+
         # Subquery to find the last execution time for each task
         last_execution_subq = (
-            session.query(
-                LastExecution.task_id,
-                func.max(LastExecution.start).label('last_start')
-            )
+            session.query(LastExecution.task_id, func.max(LastExecution.start).label('last_start'))
             .group_by(LastExecution.task_id)
             .subquery()
         )
-        
+
         # Subquery to find the last successful execution with produced > 0 for each task
         last_success_subq = (
             session.query(
-                LastSuccess.task_id,
-                func.max(LastSuccess.start).label('last_success_start')
+                LastSuccess.task_id, func.max(LastSuccess.start).label('last_success_start')
             )
-            .filter(
-                and_(
-                    LastSuccess.succeeded == True,
-                    LastSuccess.produced > 0
-                )
-            )
+            .filter(and_(LastSuccess.succeeded == True, LastSuccess.produced > 0))
             .group_by(LastSuccess.task_id)
             .subquery()
         )
-        
+
         # Main query with left joins to get all required data in a single query
         query = (
             session.query(
@@ -109,38 +100,37 @@ def do_cli_summary(manager, options):
                 LastSuccess.produced,
                 LastSuccess.accepted,
                 LastSuccess.rejected,
-                LastSuccess.failed
+                LastSuccess.failed,
             )
-            .outerjoin(
-                last_execution_subq,
-                db.StatusTask.id == last_execution_subq.c.task_id
-            )
-            .outerjoin(
-                last_success_subq,
-                db.StatusTask.id == last_success_subq.c.task_id
-            )
+            .outerjoin(last_execution_subq, db.StatusTask.id == last_execution_subq.c.task_id)
+            .outerjoin(last_success_subq, db.StatusTask.id == last_success_subq.c.task_id)
             .outerjoin(
                 LastSuccess,
                 and_(
                     LastSuccess.task_id == db.StatusTask.id,
                     LastSuccess.start == last_success_subq.c.last_success_start,
                     LastSuccess.succeeded == True,
-                    LastSuccess.produced > 0
-                )
+                    LastSuccess.produced > 0,
+                ),
             )
         )
-        
+
         for row in query.all():
-            task, last_exec_time, success_start, success_end, produced, accepted, rejected, failed = row
-            
+            (
+                task,
+                last_exec_time,
+                success_start,
+                success_end,
+                produced,
+                accepted,
+                rejected,
+                failed,
+            ) = row
+
             # Process last execution time
             # Fix weird issue that a task registers StatusTask but without an execution. GH #2022
-            last_exec = (
-                last_exec_time.strftime('%Y-%m-%d %H:%M')
-                if last_exec_time
-                else '-'
-            )
-            
+            last_exec = last_exec_time.strftime('%Y-%m-%d %H:%M') if last_exec_time else '-'
+
             # Process last success data
             if success_start is None:
                 duration = None
@@ -154,7 +144,7 @@ def do_cli_summary(manager, options):
                     last_success = colorize('red', last_success)
                 elif age < timedelta(minutes=10):
                     last_success = colorize('green', last_success)
-            
+
             table.add_row(
                 task.name,
                 last_exec,

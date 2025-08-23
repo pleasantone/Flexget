@@ -151,34 +151,119 @@ Let's supplement the testsuite with the test:
          for entry in task.entries:
              assert entry.get('hello') == True
 
-Fixtures and marks we provide
-=============================
-To facilitate writing tests for FlexGet, we provide a set of fixtures and marks.
-Some of these fixtures are also available as marks. Below are the most commonly used ones.
-A complete list of fixtures can be found in ``/tests/conftest.py``, while all marks
-are documented in ``pyproject.toml``.
+Testing network-dependent code
+==============================
+
+Overview
+--------
+
+To ensure our test suite remains fast, deterministic, and capable of running in offline environments, we employ the `vcrpy`_ library to manage tests that rely on network I/O.
+This system works by recording real HTTP interactions to a file (a "cassette") and replaying them on subsequent test runs.
+
+This document outlines the standard procedure for creating and maintaining these tests.
+
+Standard usage: the ``@pytest.mark.online`` decorator
+-----------------------------------------------------
+
+Any test function that initiates a network connection must be decorated with :term:`@pytest.mark.online`. ::
+
+   import pytest
+
+   @pytest.mark.online
+   def test_api_fetch_data():
+       # ... code that makes an HTTP request ...
+       assert response.status_code == 200
+
+This decorator instruments the test to use ``vcrpy`` to capture all outgoing network interactions and serialize them into a human-readable YAML file called a "cassette".
+
+- On the first run, ``vcrpy`` will perform the actual network request and save the entire interaction (request and response) to a cassette file.
+- On all subsequent runs, ``vcrpy`` intercepts any network call and replays the saved response from the cassette, bypassing the network entirely.
+
+This methodology provides several key advantages:
+
+*   Determinism: Tests are perfectly repeatable as they always receive the exact same response, eliminating flakiness from network or service variability.
+*   Performance: Bypassing network latency drastically reduces test execution time.
+*   Offline Execution: The entire test suite can be run without an active internet connection.
+
+.. _`vcrpy`: https://vcrpy.readthedocs.io/
+
+Workflow for new cassettes
+--------------------------
+
+When a new test decorated with ``@pytest.mark.online`` is executed, a corresponding cassette file is generated within the ``tests/cassettes/`` directory.
+This file is considered an essential artifact of the test and must be committed to the repository.
+
+To add a newly generated cassette, use the following command:
+
+.. code:: console
+
+   git add tests/cassettes/my_new_test_cassette.yaml
+
+Advanced usage: record modes
+----------------------------
+
+During development, such as when an API endpoint changes or a test needs to be updated, you may need to force re-recording of a cassette.
+Our test infrastructure, configured in ``conftest.py``, allows you to override the default recording behavior by setting the ``VCR_RECORD_MODE`` environment variable.
+
+To run tests with a specific record mode, prefix the ``pytest`` command:
+
+.. tab-set::
+   :sync-group: os
+
+   .. tab-item:: Unix
+      :sync: Unix
+
+      .. code:: console
+
+         $ VCR_RECORD_MODE=all pytest tests/path/to/test_module.py
+
+   .. tab-item:: Windows
+      :sync: Windows
+
+      .. code:: console
+
+         $ powershell -c { $env:VCR_RECORD_MODE='all'; pytest tests/path/to/test_module.py }
+
+The following modes are supported:
+
+``once`` (Default)
+    Records interactions if the cassette does not yet exist. If the cassette exists, it replays from it. If a new, unrecorded request is made, an error is raised.
+``new_episodes``
+    Replays existing interactions from the cassette and records any new interactions. Useful for incrementally adding calls to a test.
+``all``
+    Disables replay and forces re-recording of all interactions for the targeted tests, overwriting the existing cassette. Use this mode to update a cassette after an API has changed.
+``none``
+    Disables recording entirely. Only replays from the cassette. If any request is made that is not found in the cassette, an error is raised. This is useful for CI environments to guarantee no external network calls are made.
+
+Provided fixtures and marks
+===========================
+
+To streamline testing for FlexGet, we provide a collection of custom ``pytest`` fixtures and marks.
+
+This document covers the most common utilities. For an exhaustive list, refer to the fixtures defined
+in ``/tests/conftest.py`` and the marks registered in ``pyproject.toml``.
 
 Fixtures
 --------
 
-- For tests that require running a configuration, the ``execute_task(task name)`` fixture must be
-  used. Usage has been demonstrated in the examples above.
-- For tests necessitating network access, it is essential to use ``use_vcr`` fixture (equivalent to
-  the ``@pytest.mark.online`` mark). This allows ``vcrpy`` to intercept and serialize network
-  interactions into cassettes, enabling deterministic replay in subsequent test runs. By obviating
-  the need for live network connectivity, this mechanism fortifies test stability and substantially
-  enhances execution efficiency.
+.. glossary::
+
+   ``execute_task(task_name)``
+     Use this fixture to execute a FlexGet task within a test.
 
 Marks
 -----
 
-- ``@pytest.mark.online`` is equivalent to the ``use_vcr`` fixture.
-- For tests necessitating file duplication, one may leverage
-  ``@pytest.mark.filecopy(source, destination)``, wherein ``source`` and ``destination`` may be
-  instantiated as either ``str`` or ``Path``.
-- For tests contingent upon auxiliary dependencies (enumerated under the ``all`` group in
-  ``pyproject.toml``), it is imperative to annotate them with
-  ``@pytest.mark.require_optional_deps`` to ensure their execution within the CI pipeline.
+.. glossary::
+
+   ``@pytest.mark.online``
+     Tests that make external network requests must use this mark. It integrates ``vcrpy`` to capture all network interactions into YAML files called "cassettes". Subsequent test runs then replay these interactions from the cassette, eliminating the need for a live network connection. This approach guarantees deterministic test outcomes, improves execution speed, and enables offline testing.
+
+   ``@pytest.mark.filecopy(source, destination)``
+     Copies a file or directory before a test runs. Both ``source`` and ``destination`` can be a ``str`` or ``pathlib.Path`` object.
+
+   ``@pytest.mark.require_optional_deps``
+     Apply this mark to tests that rely on optional dependencies (as defined under the ``all`` key in ``pyproject.toml``). This ensures the CI pipeline installs these dependencies before executing the test.
 
 Mock input
 ==========

@@ -5,16 +5,16 @@
 
 |
 
-.. image:: https://img.shields.io/pypi/v/flexget?style=flat-square&logo=pypi
+.. image:: https://img.shields.io/pypi/v/flexget?logo=pypi&labelColor=EEEEEE
    :target: https://pypi.org/project/flexget/
 
-.. image:: https://img.shields.io/docker/v/flexget/flexget/latest?style=flat-square&logo=docker&label=docker
+.. image:: https://img.shields.io/docker/v/flexget/flexget/latest?logo=docker&label=docker&labelColor=EEEEEE
    :target: https://hub.docker.com/r/flexget/flexget
 
-.. image:: https://img.shields.io/pypi/pyversions/flexget?style=flat-square&logo=python
+.. image:: https://img.shields.io/pypi/pyversions/flexget?logo=python&labelColor=EEEEEE
    :target: https://pypi.org/project/flexget/
 
-.. image:: https://img.shields.io/codecov/c/github/flexget/flexget?style=flat-square&logo=codecov
+.. image:: https://img.shields.io/codecov/c/github/flexget/flexget?logo=codecov&labelColor=EEEEEE
    :target: https://codecov.io/gh/Flexget/Flexget
 
 ..
@@ -22,13 +22,13 @@
    .. image:: https://api.codacy.com/project/badge/Grade/86bb847efe984c12948bdeccabcbccad
       :target: https://www.codacy.com/app/Flexget/Flexget?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Flexget/Flexget&amp;utm_campaign=Badge_Grade
 
-.. image:: https://img.shields.io/github/actions/workflow/status/flexget/flexget/test.yml?style=flat-square&logo=github&label=tests
+.. image:: https://img.shields.io/github/actions/workflow/status/flexget/flexget/test.yml?logo=github&logoColor=222222&label=tests&labelColor=EEEEEE
    :target: https://github.com/Flexget/Flexget/actions/workflows/test.yml?query=branch%3Adevelop
 
-.. image:: https://img.shields.io/readthedocs/flexget?style=flat-square&logo=readthedocs
+.. image:: https://img.shields.io/readthedocs/flexget?logo=readthedocs&labelColor=EEEEEE
    :target: https://flexget.readthedocs.io/en/latest/
 
-.. image:: https://img.shields.io/discord/536690097056120833?style=flat-square&logo=discord&label=discord
+.. image:: https://img.shields.io/discord/536690097056120833?logo=discord&label=discord&labelColor=EEEEEE
    :target: https://discord.gg/W6CQrJx
 
 `FlexGet`_ is a multipurpose automation tool for content like torrents, nzbs,

@@ -14,7 +14,7 @@ babelfish==0.6.1
     # via guessit
 backports-tarfile==1.2.0 ; python_full_version < '3.12'
     # via jaraco-context
-beautifulsoup4==4.13.4
+beautifulsoup4==4.13.5
     # via flexget
 blinker==1.9.0
     # via flask
@@ -40,7 +40,7 @@ colorama==0.4.6 ; sys_platform == 'win32'
     #   loguru
 feedparser==6.0.11
     # via flexget
-flask==3.1.1
+flask==3.1.2
     # via
     #   flask-compress
     #   flask-cors
@@ -71,7 +71,7 @@ jaraco-collections==5.2.1
     # via cherrypy
 jaraco-context==6.0.1
     # via jaraco-text
-jaraco-functools==4.2.1
+jaraco-functools==4.3.0
     # via
     #   cheroot
     #   jaraco-text
@@ -82,7 +82,7 @@ jinja2==3.1.6
     # via
     #   flask
     #   flexget
-jsonschema==4.25.0
+jsonschema==4.25.1
     # via
     #   flask-restx
     #   flexget
@@ -147,7 +147,7 @@ referencing==0.36.2
     # via
     #   jsonschema
     #   jsonschema-specifications
-requests==2.32.4
+requests==2.32.5
     # via flexget
 rich==14.1.0
     # via flexget

@@ -212,7 +212,6 @@ class TestTVDSearchZAP2ITLookupAPI:
             assert data[0].get(field) == value
 
 
-@pytest.mark.online
 class TestTVDSearchAPIErrors:
     config = 'tasks: {}'
 
@@ -224,6 +223,7 @@ class TestTVDSearchAPIErrors:
         errors = schema_match(base_message, data)
         assert not errors
 
+    @pytest.mark.online
     def test_tvdb_search_lookup_error(self, api_client, schema_match):
         rsp = api_client.get('/tvdb/search/?search_name=sdfgsdfgsdfgsdfg')
         assert rsp.status_code == 404, f'Response code is {rsp.status_code}'

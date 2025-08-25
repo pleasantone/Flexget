@@ -1,7 +1,6 @@
 import pytest
 
 
-@pytest.mark.online
 class TestNfoLookupWithMovies:
     base = 'nfo_lookup_test_dir/'
     config = f"""
@@ -74,6 +73,7 @@ class TestNfoLookupWithMovies:
             nfo_lookup: yes
     """
 
+    @pytest.mark.online
     def test_nfo_with_only_id(self, execute_task):
         task = execute_task('test_1')
         for entry in task.entries:
@@ -156,6 +156,7 @@ class TestNfoLookupWithMovies:
             assert entry['nfo_genre'] == ['Fantasia', 'Romance']
             assert entry['imdb_id'] == 'tt2316801'
 
+    @pytest.mark.online
     def test_nfo_with_no_nfo_file(self, execute_task):
         task = execute_task('test_6')
         for entry in task.entries:
@@ -172,6 +173,7 @@ class TestNfoLookupWithMovies:
             # IMDB is able to find the movie from the Portuguese title, although it is not the correct one
             assert entry['imdb_name'] == 'Beauty and the Beast'
 
+    @pytest.mark.online
     def test_nfo_lookup_without_filesystem(self, execute_task):
         task = execute_task('test_7')
         # This is the same as not having an nfo file

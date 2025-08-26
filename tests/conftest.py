@@ -133,7 +133,7 @@ def use_vcr(request, monkeypatch):
     else:
         module = request.module.__name__.split('tests.')[-1]
         class_name = request.cls.__name__
-        cassette_name = f'{module}.{class_name}.{request.function.__name__}'
+        cassette_name = f'{module}.{class_name}.{request.function.__name__}.yml'
         cassette_path = VCR_CASSETTE_DIR / cassette_name
         online = True
         if vcr.record_mode == 'none':

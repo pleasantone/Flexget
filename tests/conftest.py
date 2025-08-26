@@ -146,6 +146,10 @@ def use_vcr(request, monkeypatch):
             monkeypatch.setattr('flexget.utils.requests.limit_domains', mock.Mock())
         with vcr.use_cassette(path=str(cassette_path)) as cassette:
             yield cassette
+        if not cassette_path.exists():
+            raise RuntimeError(
+                'No cassette found or generated. Hint: If the test does not require network access, `@pytest.mark.online` should be removed.'
+            )
 
 
 @pytest.fixture

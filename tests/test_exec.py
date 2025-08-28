@@ -29,7 +29,7 @@ class TestExec:
                 for_entries: """
         + sys.executable
         + """ exec.py "{{temp_dir}}" "{{title}}" "{{location}}" """
-        + """"/the/final destinaton/" "a {{quotefield}}" "/a hybrid{{location}}"
+        + """"/the/final destination/" "a {{quotefield}}" "/a hybrid{{location}}"
           test_auto_escape:
             mock:
               - {title: entry2, quotes: single ' double", otherchars: '% a $a! ` *'}
@@ -57,7 +57,7 @@ class TestExec:
                 line = infile.readline().rstrip('\n')
                 assert Path(line) == Path('/path/with spaces'), f'{line} != /path/with spaces'
                 line = infile.readline().rstrip('\n')
-                assert line == '/the/final destinaton/', f'{line} != /the/final destinaton/'
+                assert line == '/the/final destination/', f'{line} != /the/final destination/'
                 line = infile.readline().rstrip('\n')
                 assert line == "a with'quote", f"{line} != a with'quote"
                 line = infile.readline().rstrip('\n')

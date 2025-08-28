@@ -127,7 +127,7 @@ else:
 
             :param path: The path of the file to create absolute or relative
             :param size: The size in bytes of the file to create, defaults to 0
-            :raises ValueError: if it's not possible to canoncalize the path
+            :raises ValueError: if it's not possible to canonicalize the path
             :return: An :class: `pathlib.Path` of file created.
 
             """
@@ -143,7 +143,7 @@ else:
             If the path is relative it will be created in relation to the users home directory
 
             :param path: The path of the dir to create absolute or relative.
-            :raises ValueError: if it's not possible to canoncalize the path
+            :raises ValueError: if it's not possible to canonicalize the path
             :returns: An :class:`pathlib.Path` of file created.
             """
             canonicalized: Path = self.canonicalize(path)
@@ -158,7 +158,7 @@ else:
 
             :param path: The path of the symlink to create absolute or relative
             :param target:  The path of the target of the symlink, either absolute or relative
-            :raises ValueError: if it's not possible to canoncalize the path or target
+            :raises ValueError: if it's not possible to canonicalize the path or target
             :return: An :class:`pathlib.Path` of the symlink created.
             """
             canonicalized: Path = self.canonicalize(path)
@@ -185,7 +185,7 @@ else:
 
             if self.__root == canonicalized or self.__root in canonicalized.parents:
                 return canonicalized.resolve() if resolve else canonicalized
-            raise ValueError(f'Unable to canoicalize {path}')
+            raise ValueError(f'Unable to canonicalize {path}')
 
         def root(self) -> Path:
             return self.__root

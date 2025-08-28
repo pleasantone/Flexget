@@ -1578,7 +1578,7 @@ class TestImportSeries:
     def test_timeframe_max(self, execute_task):
         """Tests configure_series as well as timeframe with max_quality."""
         task = execute_task('timeframe_max')
-        assert not task.accepted, 'Entry shouldnt have been accepted on first run.'
+        assert not task.accepted, "Entry shouldn't have been accepted on first run."
         age_series(minutes=6)
         task = execute_task('timeframe_max')
         assert task.find_entry('accepted', title='the show s03e02 hdtv'), (

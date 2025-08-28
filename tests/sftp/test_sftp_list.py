@@ -287,7 +287,7 @@ def assert_entries(
     :param entry_matcher: Dict continain the expected entry values, must have at least a 'title'
                           set.
     :param allow_unexpected_entries: bool to assert if there are any additional entries generated
-                                     that matchers arn't specified for.
+                                     that matchers aren't specified for.
     """
     expected = [m['title'] for m in [entry_matcher, *argv]]
     found = [m['title'] for m in task.all_entries]

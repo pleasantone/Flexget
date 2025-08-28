@@ -350,7 +350,7 @@ Example:
   $ flexget inject "another test title"
 
 The ``inject`` will disable any other inputs in the task. It is possible to set
-arbitrary fields trough inject much like with mock. See
+arbitrary fields through inject much like with mock. See
 `full documentation <https://flexget.com/en/CLI/inject>`__.
 
 Commandline values

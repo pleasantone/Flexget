@@ -1117,7 +1117,7 @@ all = [
     { name = "matrix-nio", specifier = "~=0.25.2" },
     { name = "paramiko", specifier = "~=3.5" },
     { name = "pillow", specifier = "~=11.0" },
-    { name = "plexapi", specifier = "~=4.16" },
+    { name = "plexapi", specifier = "==4.17.0" },
     { name = "pysftp", specifier = "~=0.2.9" },
     { name = "python-telegram-bot", extras = ["http2", "socks"], specifier = "~=22.0" },
     { name = "qbittorrent-api", specifier = "~=2025.2" },
@@ -1144,7 +1144,7 @@ docs = [
 ]
 ftp = [{ name = "ftputil", specifier = "~=5.1" }]
 matrix = [{ name = "matrix-nio", specifier = "~=0.25.2" }]
-plexapi = [{ name = "plexapi", specifier = "~=4.16" }]
+plexapi = [{ name = "plexapi", specifier = "==4.17.0" }]
 qbittorrent = [{ name = "qbittorrent-api", specifier = "~=2025.2" }]
 rarfile = [{ name = "rarfile", specifier = "~=4.0" }]
 sftp = [

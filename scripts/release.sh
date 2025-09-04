@@ -34,7 +34,7 @@ if [ -z "$(git tag --points-at HEAD)" ] && [ -z "$(git tag --points-at HEAD~1)" 
   git tag -a -f "v${VERSION}" -m "v${VERSION} release"
 
   # Save tag name to github actions environment
-  echo "release_tag=v${VERSION}" >> $GITHUB_ENV
+  echo "release_tag=v${VERSION}" >> "$GITHUB_ENV"
 
   # Bump to new dev version, then commit again
   uv run scripts/dev_tools.py bump-version dev

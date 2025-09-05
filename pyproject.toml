@@ -162,6 +162,7 @@ line-length = 99
 extend-exclude = [ "flexget/ui" ]
 preview = true
 format.quote-style = "single"
+format.docstring-code-format = true # Ruff’s documentation claims that this will become the default behavior in the future, so we won’t need to specify it explicitly.
 lint.select = [ "ALL" ]
 lint.ignore = [
   "A",       # flake8-builtins

@@ -71,13 +71,12 @@ Within this file we will add our plugin.
    from flexget import plugin
    from flexget.event import event
 
-
    class Hello:
        pass
 
-   @event('plugin.register')
+   @event("plugin.register")
    def register_plugin():
-       plugin.register(Hello, 'hello', api_ver=2)
+       plugin.register(Hello, "hello", api_ver=2)
 
 Creating a test for it
 ----------------------
@@ -98,8 +97,8 @@ Write a new test case called ``tests/test_hello.py``.
 
        # The flexget test framework provides the execute_task fixture, which is a function to run tasks
        def test_feature(self, execute_task):
-         # run the task
-         execute_task('test')
+           # run the task
+           execute_task("test")
 
 Try running the test with pytest:
 
@@ -118,15 +117,14 @@ new field to each entry called ``hello`` with value ``True``.
    from flexget import plugin
    from flexget.event import event
 
-
    class Hello:
        def on_task_filter(self, task, config):
            for entry in task.entries:
-               entry['hello'] = True
+               entry["hello"] = True
 
-   @event('plugin.register')
+   @event("plugin.register")
    def register_plugin():
-       plugin.register(Hello, 'hello', api_ver=2)
+       plugin.register(Hello, "hello", api_ver=2)
 
 Adding more tests
 -----------------
@@ -146,10 +144,10 @@ Let's supplement the testsuite with the test:
        """
 
        def test_feature(self, execute_task):
-         # run the task
-         task = execute_task('test')
-         for entry in task.entries:
-             assert entry.get('hello') == True
+           # run the task
+           task = execute_task("test")
+           for entry in task.entries:
+               assert entry.get("hello") == True
 
 Testing network-dependent code
 ==============================

@@ -11,7 +11,7 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.event.number || github.ref || github.run_id }}
   cancel-in-progress: true
 env:
-  UV_VERSION: 0.8.15 # renovate: datasource=pypi depName=uv
+  UV_VERSION: 0.8.16 # renovate: datasource=pypi depName=uv
 jobs:
   tests:
     name: Run Tests
@@ -70,12 +70,9 @@ jobs:
           version: ${{ env.UV_VERSION }}
       - name: Run tests for scripts
         run: |
-          uv export --no-hashes --output-file scripts/bundle_webui.txt --script scripts/bundle_webui.py
-          uv run --isolated --no-project --with pytest --with vcrpy --with-requirements scripts/bundle_webui.txt -m pytest --override-ini filterwarnings=error scripts/tests/test_bundle_webui.py
-          uv export --no-hashes --output-file scripts/dev_tools.txt --script scripts/dev_tools.py
-          uv run --isolated --no-project --with pytest --with vcrpy --with-requirements scripts/dev_tools.txt -m pytest --override-ini filterwarnings=error scripts/tests/test_dev_tools.py
-          uv export --no-hashes --output-file scripts/update_changelog.txt --script scripts/update_changelog.py
-          uv run --isolated --no-project --with pytest --with vcrpy --with-requirements scripts/update_changelog.txt -m pytest --override-ini filterwarnings=error scripts/tests/test_update_changelog.py
+          uv run --isolated --no-project --with pytest --with vcrpy --with-requirements scripts/bundle_webui.py -m pytest --override-ini filterwarnings=error scripts/tests/test_bundle_webui.py
+          uv run --isolated --no-project --with pytest --with vcrpy --with-requirements scripts/dev_tools.py -m pytest --override-ini filterwarnings=error scripts/tests/test_dev_tools.py
+          uv run --isolated --no-project --with pytest --with vcrpy --with-requirements scripts/update_changelog.py -m pytest --override-ini filterwarnings=error scripts/tests/test_update_changelog.py
 
   test-results:
     name: Test results

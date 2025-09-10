@@ -56,6 +56,14 @@ repos:
       - id: prettier
         args: [--single-quote]
         exclude: .*tests/cassettes/.*
+  - repo: https://github.com/adamchainz/blacken-docs
+    rev: 1.19.1
+    hooks:
+      - id: blacken-docs
+        args: [--line-length, '98', --pyi]
+        language: python
+        additional_dependencies:
+          - black==25.1.0
   - repo: https://github.com/astral-sh/ruff-pre-commit
     rev: v0.12.12
     hooks:

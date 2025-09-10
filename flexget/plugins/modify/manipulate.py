@@ -51,7 +51,6 @@ class Manipulate:
                     'erase': {
                         'type': 'array',
                         'items': {'type': 'string', 'format': 'regex'},
-                        'minItems': 1,
                     },
                     'find_all': {'type': 'boolean'},
                     'replace': {
@@ -126,7 +125,7 @@ class Manipulate:
                     field_value,
                 )
                 if config.get('remove'):
-                    # Eemove entire field
+                    # Remove entire field
                     if field in entry:
                         del entry[field]
                         modified = True

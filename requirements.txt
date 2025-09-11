@@ -24,7 +24,7 @@ brotlicffi==1.1.0.0 ; platform_python_implementation == 'PyPy'
     # via flask-compress
 certifi==2025.8.3
     # via requests
-cffi==1.17.1 ; platform_python_implementation == 'PyPy'
+cffi==2.0.0 ; platform_python_implementation == 'PyPy'
     # via brotlicffi
 charset-normalizer==3.4.3
     # via requests
@@ -38,7 +38,7 @@ colorama==0.4.6 ; sys_platform == 'win32'
     # via
     #   click
     #   loguru
-feedparser==6.0.11
+feedparser==6.0.12
     # via flexget
 flask==3.1.2
     # via
@@ -115,7 +115,7 @@ portend==3.2.1
     # via cherrypy
 psutil==7.0.0
     # via flexget
-pycparser==2.22 ; platform_python_implementation == 'PyPy'
+pycparser==2.23 ; implementation_name != 'PyPy' and platform_python_implementation == 'PyPy'
     # via cffi
 pygments==2.19.2
     # via rich

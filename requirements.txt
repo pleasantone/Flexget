@@ -121,7 +121,7 @@ pygments==2.19.2
     # via rich
 pynzb==0.1.0
     # via flexget
-pyparsing==3.2.3
+pyparsing==3.2.4
     # via flexget
 pyrss2gen==1.1
     # via flexget

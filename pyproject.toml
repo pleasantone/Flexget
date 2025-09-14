@@ -73,7 +73,7 @@ gui-scripts.flexget-headless = "flexget:main" # This is useful on Windows to avo
 dev = [
   "pre-commit~=4.0",
   "pytest~=8.3",
-  "pytest-cov~=6.1",
+  "pytest-cov~=7.0",
   "pytest-socket~=0.7.0",
   "pytest-xdist~=3.6",
   "ruff==0.12.12",

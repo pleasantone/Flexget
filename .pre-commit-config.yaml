@@ -57,7 +57,7 @@ repos:
         args: [--single-quote]
         exclude: .*tests/cassettes/.*
   - repo: https://github.com/adamchainz/blacken-docs
-    rev: 1.19.1
+    rev: 1.20.0
     hooks:
       - id: blacken-docs
         args: [--line-length, '98', --pyi]

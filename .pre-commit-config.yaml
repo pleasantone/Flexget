@@ -1,6 +1,6 @@
 ci:
   autoupdate_schedule: quarterly
-  skip: [check-jsonschema, uv-lock]
+  skip: [uv-lock]
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v6.0.0
@@ -79,20 +79,12 @@ repos:
     hooks:
       - id: doc8
   - repo: https://github.com/python-jsonschema/check-jsonschema
-    rev: 0.33.3
+    rev: 0.34.0
     hooks:
+      - id: check-codecov
+      - id: check-github-issue-config
+      - id: check-github-issue-forms
       - id: check-readthedocs
-      - id: check-jsonschema
-        name: Check GitHub Issue Forms
-        files: ^\.github/ISSUE_TEMPLATE/(?!config\.yml$).+$
-        types: [yaml]
-        args:
-          [--schemafile, https://www.schemastore.org/github-issue-forms.json]
-      - id: check-jsonschema
-        name: Check GitHub Issue Config
-        files: ^\.github/ISSUE_TEMPLATE/config\.yml$
-        args:
-          [--schemafile, https://www.schemastore.org/github-issue-config.json]
   - repo: https://github.com/astral-sh/uv-pre-commit
     rev: 0.8.17
     hooks:

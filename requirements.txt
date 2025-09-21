@@ -28,11 +28,11 @@ cffi==2.0.0 ; platform_python_implementation == 'PyPy'
     # via brotlicffi
 charset-normalizer==3.4.3
     # via requests
-cheroot==10.0.1
+cheroot==11.0.0
     # via cherrypy
 cherrypy==18.10.0
     # via flexget
-click==8.2.1
+click==8.3.0
     # via flask
 colorama==0.4.6 ; sys_platform == 'win32'
     # via
@@ -113,7 +113,7 @@ plumbum==1.9.0
     # via rpyc
 portend==3.2.1
     # via cherrypy
-psutil==7.0.0
+psutil==7.1.0
     # via flexget
 pycparser==2.23 ; implementation_name != 'PyPy' and platform_python_implementation == 'PyPy'
     # via cffi
@@ -121,7 +121,7 @@ pygments==2.19.2
     # via rich
 pynzb==0.1.0
     # via flexget
-pyparsing==3.2.4
+pyparsing==3.2.5
     # via flexget
 pyrss2gen==1.1
     # via flexget
@@ -200,7 +200,7 @@ werkzeug==3.1.3
     #   flexget
 win32-setctime==1.2.0 ; sys_platform == 'win32'
     # via loguru
-zc-lockfile==3.0.post1
+zc-lockfile==4.0
     # via cherrypy
 zxcvbn==4.5.0
     # via flexget

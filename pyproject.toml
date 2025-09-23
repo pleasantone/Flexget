@@ -245,8 +245,7 @@ keep_full_version = true
 addopts = '-p no:legacypath --strict-config --strict-markers'
 filterwarnings = [
   'error',
-  "ignore:jsonschema.RefResolver is deprecated as of v4.18.0:DeprecationWarning:flask_restx.api", # Blocked by https://github.com/python-restx/flask-restx/issues/553. Or consider migrating to `flask-smorest`: https://github.com/python-restx/flask-restx/issues/633#issuecomment-2962412240
-  'ignore:Failed to load HostKeys from:UserWarning:pysftp',                                       # It's a bug in pysftp (unmaintained) 0.2.9, not in 0.2.8: https://stackoverflow.com/q/56521549
+  'ignore:Failed to load HostKeys from:UserWarning:pysftp', # It's a bug in pysftp (unmaintained) 0.2.9, not in 0.2.8: https://stackoverflow.com/q/56521549
 ]
 markers = [
   'filecopy(src, dst): mark test to copy a file from `src` to `dst` before running',

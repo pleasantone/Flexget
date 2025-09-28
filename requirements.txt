@@ -14,7 +14,7 @@ babelfish==0.6.1
     # via guessit
 backports-tarfile==1.2.0 ; python_full_version < '3.12'
     # via jaraco-context
-beautifulsoup4==4.13.5
+beautifulsoup4==4.14.0
     # via flexget
 blinker==1.9.0
     # via flask
@@ -92,7 +92,7 @@ loguru==0.7.3
     # via flexget
 markdown-it-py==4.0.0
     # via rich
-markupsafe==3.0.2
+markupsafe==3.0.3
     # via
     #   flask
     #   jinja2
@@ -133,7 +133,7 @@ python-dateutil==2.9.0.post0
     #   tempora
 pywin32==311 ; platform_python_implementation != 'PyPy' and sys_platform == 'win32'
     # via plumbum
-pyyaml==6.0.2
+pyyaml==6.0.3
     # via flexget
 pyzstd==0.17.0 ; python_full_version < '3.14'
     # via flask-compress
